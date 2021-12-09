@@ -1,4 +1,4 @@
-name: Smart Cafe CI part
+name: Smart Kitchen - CI
 
 on:
   push:
