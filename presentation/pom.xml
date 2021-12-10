@@ -6,13 +6,12 @@
         <groupId>am.smartcafe</groupId>
         <artifactId>smart-cafe</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <packaging>jar</packaging>
 
     <artifactId>presentation</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>presentation</name>
 
     <properties>
