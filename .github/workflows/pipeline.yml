@@ -34,7 +34,7 @@ jobs:
       - run: mkdir staging && cp presentation/target/*.jar staging
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.PROJECT_VERSION }}.jar
+          name: smart-cafe-${{ env.PROJECT_VERSION }}.jar
           path: staging
 
       - name: Print Message
