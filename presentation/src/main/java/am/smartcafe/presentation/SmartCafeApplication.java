@@ -9,5 +9,4 @@ public class SmartCafeApplication {
     public static void main(String[] args) {
         SpringApplication.run(SmartCafeApplication.class, args);
     }
-
 }
