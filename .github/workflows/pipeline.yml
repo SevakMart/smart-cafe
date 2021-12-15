@@ -1,4 +1,4 @@
-name: Smart Kitchen - CI - push
+name: Smart Kitchen - CI 
 
 on:
   push:
