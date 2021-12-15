@@ -22,7 +22,7 @@ jobs:
           distribution: 'adopt'
           cache: maven
 
-      - run: mvn  --clean --install
+      - run: mvn clean test
 
       - name: Print Message
         run: echo "CI Pipeline part Finished successfully!"
