@@ -31,6 +31,7 @@ public class UserController {
         if (userByEmail.isPresent()) {
             return "redirect:/register?msg=Email already used";
         }
+        user.setActive(false);
         user.setPassword(passwordEncoder().encode(UUID.randomUUID().toString()));
         userService.saveUser(user);
         return "redirect:/?msg="+msg+ user.getEmail();
