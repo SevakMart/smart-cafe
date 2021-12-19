@@ -1,6 +1,5 @@
-package com.example.demo.config;
+package am.smartcafe.presentation.config;
 
-import org.aopalliance.intercept.Interceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @Configuration
-public class i18nConfig implements WebMvcConfigurer {
+public class Translation implements WebMvcConfigurer {
     @Bean
    public LocaleResolver localeResolver(){
         Locale.setDefault(Locale.US);
@@ -26,7 +25,7 @@ public class i18nConfig implements WebMvcConfigurer {
         lci.setParamName("lang");
         return lci;
     }
-    public void addInterceptors(InterceptorRegistry registry){         //for working LocalChangeInterceptor bean
+    public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(localeChangeInterceptor());
     }
 }
