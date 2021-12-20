@@ -33,7 +33,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity <?> createNewUser(@RequestBody UserRegisterRequest userRegisterRequest, BindingResult bindingResult) throws ModelAlreadyExistException, ModelAlreadyExistException {
+    public ResponseEntity <?> createNewUser(@RequestBody UserRegisterRequest userRegisterRequest, BindingResult bindingResult) throws ModelAlreadyExistException {
         ModelAndView modelAndView = new ModelAndView();
         Optional<User> userExists = userService.findUserByEmail(userRegisterRequest.getEmail());
         if (userExists.isPresent()) {
