@@ -1,12 +1,10 @@
 package am.smartcafe.impl;
 
-import am.smartcafe.model.UserChangePassword;
-import am.smartcafe.repository.UserRepository;
 import am.smartcafe.model.User;
+import am.smartcafe.model.PasswordChangeRequest;
+import am.smartcafe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,37 +19,21 @@ public class UserServiceImpl implements UserService{
 
 
 
-    private static final String REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$";
 
 
 
-    public String changePassword( UserChangePassword userChangePassword){
-        User user = getById(userChangePassword.getUserId());
-        String failText = "Your password must be at least 6 characters," +
-                " and must include at least one upper case letter," +
-                " one lower case letter, and one numeric digit.";
-
-
-        if (passwordEncoder.matches(userChangePassword.getPassword(),user.getPassword()) &&
-        userChangePassword.getRepeatNewPassword().equals(userChangePassword.getNewPassword())
-          && REGEX.matches(userChangePassword.getNewPassword())){
-            String newPassword = passwordEncoder.encode(userChangePassword.getNewPassword());
-            user.setPassword(newPassword);
-            user.setActive(true);
-            userRepository.save(user);
-            return null;
-        }
-        return failText;
+    public void changePassword(PasswordChangeRequest passwordChangeRequest){
+        User user = getById(passwordChangeRequest.getUserId());
+        String newPassword = passwordEncoder.encode(passwordChangeRequest.getNewPassword());
+        user.setPassword(newPassword);
+        user.setActive(true);
+        userRepository.save(user);
     }
 
 
 
 
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     public void saveUser(User user) {

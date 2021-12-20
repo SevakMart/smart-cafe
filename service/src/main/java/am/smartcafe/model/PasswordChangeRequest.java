@@ -2,7 +2,7 @@ package am.smartcafe.model;
 
 import java.util.Objects;
 
-public class UserChangePassword {
+public class PasswordChangeRequest {
 
     private long userId;
     private String password;
@@ -10,13 +10,13 @@ public class UserChangePassword {
     private String repeatNewPassword;
 
 
-    public UserChangePassword(String password, String newPassword, String repeatNewPassword) {
+    public PasswordChangeRequest(String password, String newPassword, String repeatNewPassword) {
         this.password = password;
         this.newPassword = newPassword;
         this.repeatNewPassword = repeatNewPassword;
     }
 
-    public UserChangePassword() {
+    public PasswordChangeRequest() {
     }
 
     public String getPassword() {
@@ -55,7 +55,7 @@ public class UserChangePassword {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserChangePassword that = (UserChangePassword) o;
+        PasswordChangeRequest that = (PasswordChangeRequest) o;
         return Objects.equals(password, that.password) && Objects.equals(newPassword, that.newPassword) && Objects.equals(repeatNewPassword, that.repeatNewPassword);
     }
 
