@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories(basePackages = {"data-access.am.smartcafe.data_access.repository"})
 @EntityScan({"data-access.am.smartcafe.data_access.model"})
-@ComponentScan({"data-access.am.smartcafe.data_access","service.am.smartcafe.service"})
+@ComponentScan( {"data-access.am.smartcafe.data_access","service.am.smartcafe.service"})
 @SpringBootApplication
 public class SmartCafeApplication {
 

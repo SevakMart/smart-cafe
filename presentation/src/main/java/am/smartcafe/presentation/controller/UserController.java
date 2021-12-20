@@ -11,12 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 import java.util.UUID;
 
+
+@RequestMapping( "/user")
 @Controller
-@RequestMapping("/user")
 public class UserController {
     @Value("${text}")
     private String msg;
@@ -25,11 +27,11 @@ public class UserController {
     private UserServiceImpl userService;
 
 
-    @PostMapping("/register")
+    @PostMapping( "/register")
     public String saveUser(@ModelAttribute  User user) {
         Optional<User> userByEmail = userService.findByEmail(user.getEmail());
         if (userByEmail.isPresent()) {
-            return "redirect:/register?msg=Email already used";
+            return "redirect:/user/register?msg=Email already used";
         }
         user.setActive(false);
         user.setPassword(passwordEncoder().encode(UUID.randomUUID().toString()));
