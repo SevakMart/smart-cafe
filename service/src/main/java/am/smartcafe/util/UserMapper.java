@@ -1,12 +1,12 @@
 package am.smartcafe.util;
 
 import am.smartcafe.data_access.dto.req.UserRegisterRequest;
-import am.smartcafe.data_access.dto.resp.UserRegisterResponse;
+import am.smartcafe.data_access.dto.resp.UserResponse;
 import am.smartcafe.data_access.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserUtil {
+public class UserMapper {
 
     public static User dtoToUser(UserRegisterRequest request) {
         return User.builder()
@@ -18,8 +18,8 @@ public class UserUtil {
                 .build();
     }
 
-    public static UserRegisterResponse userToDto(User user) {
-        return UserRegisterResponse.builder()
+    public static UserResponse userToDto(User user) {
+        return UserResponse.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())

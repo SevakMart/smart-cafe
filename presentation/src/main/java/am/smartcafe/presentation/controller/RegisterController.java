@@ -1,53 +1,52 @@
 package am.smartcafe.presentation.controller;
 
 import am.smartcafe.data_access.dto.req.UserRegisterRequest;
+import am.smartcafe.data_access.dto.resp.UserResponse;
 import am.smartcafe.data_access.model.User;
-import am.smartcafe.presentation.exception.ModelAlreadyExistException;
+import am.smartcafe.exception.ModelAlreadyExistException;
 import am.smartcafe.service.UserService;
-import org.springframework.http.ResponseEntity;
+import am.smartcafe.util.UserMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
 public class RegisterController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public RegisterController(UserService userService) {
+    public RegisterController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/register")
-    public ModelAndView registration() {
-        ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("register");
-        return modelAndView;
+    public String userPage(ModelMap modelMap) {
+        modelMap.addAttribute("");
+        return "register";
     }
 
+
     @PostMapping("/register")
-    public ResponseEntity <?> createNewUser(@RequestBody UserRegisterRequest userRegisterRequest, BindingResult bindingResult) throws ModelAlreadyExistException {
-        ModelAndView modelAndView = new ModelAndView();
-        Optional<User> userExists = userService.findUserByEmail(userRegisterRequest.getEmail());
+    public String createNewUser(@Valid @ModelAttribute UserRegisterRequest userRegisterRequest,ModelMap modelMap, BindingResult bindingResult){
+        Optional<User> userExists = userService.findByEmail(userRegisterRequest.getEmail());
         if (userExists.isPresent()) {
             bindingResult.rejectValue("email", "error.user",
                     "User with this email already exists. Login or reset your password.");
         }
-        if (!bindingResult.hasErrors()) {
-            userService.register(userRegisterRequest);
-            modelAndView.addObject("successMessage",
-                    "User has been registered successfully");
-            modelAndView.addObject("UserRegisterRequest", new User());
+        if (bindingResult.hasErrors()){
+            return "redirect:/register";
         }
-        modelAndView.setViewName("register");
-
-        return ResponseEntity.ok(userService.register(userRegisterRequest));
+        UserResponse userResponse = userService.saveUser(UserMapper.dtoToUser(userRegisterRequest));
+        modelMap.addAttribute("user",userResponse);
+        return "redirect:/?msg= User was added";
     }
 }

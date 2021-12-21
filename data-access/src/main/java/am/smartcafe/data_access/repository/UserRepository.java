@@ -1,4 +1,4 @@
-package am.smartcafe.presentation.repository;
+package am.smartcafe.data_access.repository;
 
 import am.smartcafe.data_access.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

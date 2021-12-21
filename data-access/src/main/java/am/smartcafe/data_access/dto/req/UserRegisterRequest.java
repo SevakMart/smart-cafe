@@ -21,7 +21,7 @@ public class UserRegisterRequest {
     private String lastName;
 
     @NotBlank
-    private Set<Role> role;
+    private Role role;
 
     @Email
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", message = "Please enter a correct email")
@@ -34,7 +34,7 @@ public class UserRegisterRequest {
     public UserRegisterRequest() {
     }
 
-    public UserRegisterRequest(Long id, String firstName, String lastName, Set<Role> role, String email, String password) {
+    public UserRegisterRequest(Long id, String firstName, String lastName, Role role, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -67,11 +67,11 @@ public class UserRegisterRequest {
         this.lastName = lastName;
     }
 
-    public Set<Role> getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Set<Role> role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
