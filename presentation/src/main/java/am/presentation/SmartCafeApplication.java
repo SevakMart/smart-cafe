@@ -8,8 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"am.smartcafe","am.presentation"})
 public class SmartCafeApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SmartCafeApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(SmartCafeApplication.class, args);
+  }
 }
