@@ -1,13 +1,10 @@
 package am.smartcafe.presentation.controller;
 
-import am.smartcafe.data_access.dto.req.UserRegisterRequest;
-import am.smartcafe.data_access.dto.resp.UserResponse;
+import am.smartcafe.dto.req.UserRegisterRequest;
+import am.smartcafe.dto.resp.UserResponse;
 import am.smartcafe.data_access.model.User;
-import am.smartcafe.exception.ModelAlreadyExistException;
 import am.smartcafe.service.UserService;
 import am.smartcafe.util.UserMapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

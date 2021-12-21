@@ -18,12 +18,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>am.smartcafe</groupId>
-            <artifactId>data-access</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -32,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>am.smartcafe</groupId>
-            <artifactId>presentation</artifactId>
+            <artifactId>data-access</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

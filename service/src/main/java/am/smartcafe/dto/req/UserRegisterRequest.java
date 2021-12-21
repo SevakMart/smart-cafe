@@ -1,11 +1,10 @@
-package am.smartcafe.data_access.dto.req;
+package am.smartcafe.dto.req;
 
 import am.smartcafe.data_access.model.Role;
 import lombok.Builder;
 
 import javax.validation.constraints.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Builder
 public class UserRegisterRequest {
@@ -89,19 +88,6 @@ public class UserRegisterRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserRegisterRequest that = (UserRegisterRequest) o;
-        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(role, that.role) && Objects.equals(email, that.email) && Objects.equals(password, that.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, role, email, password);
     }
 
     @Override

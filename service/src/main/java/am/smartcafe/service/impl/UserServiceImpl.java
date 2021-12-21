@@ -1,6 +1,6 @@
 package am.smartcafe.service.impl;
 
-import am.smartcafe.data_access.dto.resp.UserResponse;
+import am.smartcafe.dto.resp.UserResponse;
 import am.smartcafe.data_access.model.User;
 import am.smartcafe.data_access.repository.UserRepository;
 import am.smartcafe.service.UserService;

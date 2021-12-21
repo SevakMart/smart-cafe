@@ -1,11 +1,10 @@
-package am.smartcafe.data_access.dto.resp;
+package am.smartcafe.dto.resp;
 
 import am.smartcafe.data_access.model.Role;
 import lombok.Builder;
 
 import javax.validation.constraints.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Builder
 public class UserResponse {

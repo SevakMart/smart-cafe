@@ -12,20 +12,22 @@ import java.util.Locale;
 
 @Configuration
 public class Translation implements WebMvcConfigurer {
-    @Bean
-   public LocaleResolver localeResolver(){
-        Locale.setDefault(Locale.US);
-        SessionLocaleResolver slr= new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.US);
-        return slr;
-    }
-    @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor(){
-        LocaleChangeInterceptor lci= new LocaleChangeInterceptor();
-        lci.setParamName("lang");
-        return lci;
-    }
-    public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(localeChangeInterceptor());
-    }
+  @Bean
+  public LocaleResolver localeResolver() {
+    Locale.setDefault(Locale.US);
+    SessionLocaleResolver slr = new SessionLocaleResolver();
+    slr.setDefaultLocale(Locale.US);
+    return slr;
+  }
+
+  @Bean
+  public LocaleChangeInterceptor localeChangeInterceptor() {
+    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+    lci.setParamName("lang");
+    return lci;
+  }
+
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(localeChangeInterceptor());
+  }
 }
