@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    public void changePassword(PasswordChangeRequest passwordChangeRequest){
+    public void changePassword(PasswordChangeRequest passwordChangeRequest) {
         User user = getById(passwordChangeRequest.getUserId());
         String newPassword = passwordEncoder.encode(passwordChangeRequest.getNewPassword());
         user.setPassword(newPassword);
@@ -28,9 +28,10 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
     }
 
-
-
-
+    @Override
+    public User getById(long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("user not found"));
+    }
 
 
     @Override
@@ -43,8 +44,5 @@ public class UserServiceImpl implements UserService{
 
     }
 
-    @Override
-    public User getById(long id) {
-        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("user not found"));
-    }
+
 }

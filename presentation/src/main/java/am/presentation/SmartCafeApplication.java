@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("am.smartcafe")
+@ComponentScan({"am.smartcafe","am.presentation"})
 public class SmartCafeApplication {
 
     public static void main(String[] args) {
