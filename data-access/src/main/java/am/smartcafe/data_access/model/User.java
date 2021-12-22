@@ -40,7 +40,8 @@ public class User {
     this.password = password;
   }
 
-  public User() {}
+  public User() {
+  }
 
   public boolean isActive() {
     return isActive;
@@ -103,13 +104,7 @@ public class User {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return isActive == user.isActive
-        && Objects.equals(id, user.id)
-        && Objects.equals(firstName, user.firstName)
-        && Objects.equals(lastName, user.lastName)
-        && role == user.role
-        && Objects.equals(email, user.email)
-        && Objects.equals(password, user.password);
+    return isActive == user.isActive && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && role == user.role && Objects.equals(email, user.email) && Objects.equals(password, user.password);
   }
 
   @Override
@@ -119,25 +114,14 @@ public class User {
 
   @Override
   public String toString() {
-    return "User{"
-        + "id="
-        + id
-        + ", firstName='"
-        + firstName
-        + '\''
-        + ", lastName='"
-        + lastName
-        + '\''
-        + ", isActive="
-        + isActive
-        + ", role="
-        + role
-        + ", email='"
-        + email
-        + '\''
-        + ", password='"
-        + password
-        + '\''
-        + '}';
+    return "User{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", isActive=" + isActive +
+            ", role=" + role +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            '}';
   }
 }
