@@ -41,12 +41,14 @@ public class Translation implements WebMvcConfigurer {
   }
 
   @Bean
+  @Override
   public LocalValidatorFactoryBean getValidator() {
     LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
     bean.setValidationMessageSource(messageSource());
     return bean;
   }
 
+  @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(localeChangeInterceptor());
   }

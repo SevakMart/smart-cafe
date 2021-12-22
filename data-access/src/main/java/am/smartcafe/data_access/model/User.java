@@ -3,6 +3,8 @@ package am.smartcafe.data_access.model;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +21,8 @@ public class User {
   private String firstName;
   private String lastName;
   private boolean isActive;
+
+  @Enumerated(EnumType.STRING)
   private Role role;
   private String email;
   private String password;
@@ -40,8 +44,7 @@ public class User {
     this.password = password;
   }
 
-  public User() {
-  }
+  public User() {}
 
   public boolean isActive() {
     return isActive;
@@ -104,7 +107,13 @@ public class User {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return isActive == user.isActive && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && role == user.role && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+    return isActive == user.isActive
+        && Objects.equals(id, user.id)
+        && Objects.equals(firstName, user.firstName)
+        && Objects.equals(lastName, user.lastName)
+        && role == user.role
+        && Objects.equals(email, user.email)
+        && Objects.equals(password, user.password);
   }
 
   @Override
@@ -114,14 +123,25 @@ public class User {
 
   @Override
   public String toString() {
-    return "User{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", isActive=" + isActive +
-            ", role=" + role +
-            ", email='" + email + '\'' +
-            ", password='" + password + '\'' +
-            '}';
+    return "User{"
+        + "id="
+        + id
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", isActive="
+        + isActive
+        + ", role="
+        + role
+        + ", email='"
+        + email
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + '}';
   }
 }
