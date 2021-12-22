@@ -2,6 +2,8 @@ package am.smartcafe.service.impl;
 
 import java.util.Optional;
 
+import am.smartcafe.service.dto.req.PasswordChangeRequest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,4 +34,18 @@ public class UserServiceImpl implements UserService {
     user.setPassword(encoder.encode(user.getPassword()));
     return UserMapper.userToDto(userRepository.save(user));
   }
+
+  public void changePassword(PasswordChangeRequest passwordChangeRequest) {
+    User user = getById(passwordChangeRequest.getUserId());
+    String newPassword = encoder.encode(passwordChangeRequest.getNewPassword());
+    user.setPassword(newPassword);
+    user.setActive(true);
+    userRepository.save(user);
+  }
+
+  @Override
+  public User getById(long id) {
+    return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("user not found"));
+  }
+
 }

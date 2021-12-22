@@ -1,4 +1,4 @@
-package am.smartcafe.model;
+package am.smartcafe.service.dto.req;
 
 import java.util.Objects;
 

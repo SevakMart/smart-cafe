@@ -1,10 +1,11 @@
 package am.smartcafe.impl;
 
 import am.presentation.SmartCafeApplication;
-import am.smartcafe.model.PasswordChangeRequest;
-import am.smartcafe.model.Role;
-import am.smartcafe.model.User;
-import am.smartcafe.repository.UserRepository;
+import am.smartcafe.data_access.model.Role;
+import am.smartcafe.data_access.model.User;
+import am.smartcafe.data_access.repository.UserRepository;
+import am.smartcafe.service.UserService;
+import am.smartcafe.service.dto.req.PasswordChangeRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
