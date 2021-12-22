@@ -1,4 +1,4 @@
-package am.smartcafe.presentation.config;
+package am.presentation.config;
 
 import java.util.Locale;
 
