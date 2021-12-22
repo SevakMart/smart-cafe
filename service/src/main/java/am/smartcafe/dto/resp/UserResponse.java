@@ -1,12 +1,15 @@
 package am.smartcafe.dto.resp;
 
-import am.smartcafe.data_access.model.Role;
-import lombok.Builder;
-
-import javax.validation.constraints.*;
 import java.util.Objects;
 
-@Builder
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import am.smartcafe.data_access.model.Role;
+
 public class UserResponse {
   private static final String REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 

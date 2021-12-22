@@ -3,7 +3,6 @@ package am.smartcafe.presentation.controller;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,10 +19,14 @@ import am.smartcafe.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-  @Value("${text}")
-  private String message;
 
-  @Autowired private UserService userService;
+  private final String message;
+  private final UserService userService;
+
+  public UserController(@Value("${text}") String message, UserService userService) {
+    this.message = message;
+    this.userService = userService;
+  }
 
   @GetMapping("/register")
   public String registerPage() {
@@ -37,13 +40,7 @@ public class UserController {
       return "redirect:/user/register?msg=Email already used";
     }
     user.setActive(false);
-    user.setPassword(passwordEncoder().encode(UUID.randomUUID().toString()));
-    userService.saveUser(user);
+    userService.save(user);
     return "redirect:/user/register?msg=" + message + user.getEmail();
-  }
-
-  @Bean
-  PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
   }
 }
