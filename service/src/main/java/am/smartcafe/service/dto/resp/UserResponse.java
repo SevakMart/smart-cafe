@@ -1,4 +1,4 @@
-package am.smartcafe.dto.resp;
+package am.smartcafe.service.dto.resp;
 
 import java.util.Objects;
 

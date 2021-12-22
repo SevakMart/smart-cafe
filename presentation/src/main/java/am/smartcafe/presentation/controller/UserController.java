@@ -1,12 +1,9 @@
 package am.smartcafe.presentation.controller;
 
+import java.util.Locale;
 import java.util.Optional;
-import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,11 +17,11 @@ import am.smartcafe.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-  private final String message;
+  private final MessageSource messageSource;
   private final UserService userService;
 
-  public UserController(@Value("${text}") String message, UserService userService) {
-    this.message = message;
+  public UserController(MessageSource messageSource, UserService userService) {
+    this.messageSource = messageSource;
     this.userService = userService;
   }
 
@@ -41,6 +38,8 @@ public class UserController {
     }
     user.setActive(false);
     userService.save(user);
-    return "redirect:/user/register?msg=" + message + user.getEmail();
+    return "redirect:/user/register?msg="
+        + messageSource.getMessage("user.register.success.message", new Object[0], Locale.ENGLISH)
+        + user.getEmail();
   }
 }

@@ -1,4 +1,4 @@
-package am.smartcafe.dto.req;
+package am.smartcafe.service.dto.req;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

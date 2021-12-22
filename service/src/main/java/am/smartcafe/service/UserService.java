@@ -3,7 +3,7 @@ package am.smartcafe.service;
 import java.util.Optional;
 
 import am.smartcafe.data_access.model.User;
-import am.smartcafe.dto.resp.UserResponse;
+import am.smartcafe.service.dto.resp.UserResponse;
 
 public interface UserService {
   UserResponse save(User user);

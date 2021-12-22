@@ -1,8 +1,8 @@
-package am.smartcafe.dto.mapper;
+package am.smartcafe.service.dto.mapper;
 
 import am.smartcafe.data_access.model.User;
-import am.smartcafe.dto.req.UserRegisterRequest;
-import am.smartcafe.dto.resp.UserResponse;
+import am.smartcafe.service.dto.req.UserRegisterRequest;
+import am.smartcafe.service.dto.resp.UserResponse;
 
 public class UserMapper {
 

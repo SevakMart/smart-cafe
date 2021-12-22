@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,20 +12,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import am.smartcafe.data_access.model.User;
-import am.smartcafe.dto.mapper.UserMapper;
-import am.smartcafe.dto.req.UserRegisterRequest;
-import am.smartcafe.dto.resp.UserResponse;
+import am.smartcafe.service.dto.mapper.UserMapper;
+import am.smartcafe.service.dto.req.UserRegisterRequest;
+import am.smartcafe.service.dto.resp.UserResponse;
 import am.smartcafe.service.UserService;
 
 @Controller
 public class RegisterController {
 
   private final UserService userService;
-  private final PasswordEncoder passwordEncoder;
 
-  public RegisterController(UserService userService, PasswordEncoder passwordEncoder) {
+  public RegisterController(UserService userService) {
     this.userService = userService;
-    this.passwordEncoder = passwordEncoder;
   }
 
   @GetMapping("/register")
