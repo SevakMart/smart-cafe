@@ -1,10 +1,6 @@
 package am.smartcafe.service.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class ModelAlreadyExistException extends Exception {
+public class ModelAlreadyExistException extends RuntimeException {
   public ModelAlreadyExistException() {}
 
   public ModelAlreadyExistException(String message) {
