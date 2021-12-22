@@ -1,26 +1,36 @@
 package am.smartcafe.data_access.model;
 
-import lombok.Builder;
-
-import javax.persistence.*;
 import java.util.Objects;
 
-@Builder
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "user")
 public class User {
+
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String firstName;
   private String lastName;
   private boolean isActive;
-  @Enumerated(value = EnumType.STRING)
   private Role role;
   private String email;
   private String password;
 
-  public User(Long id, String firstName, String lastName, boolean isActive, Role role, String email, String password) {
+  public User(
+      Long id,
+      String firstName,
+      String lastName,
+      boolean isActive,
+      Role role,
+      String email,
+      String password) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
