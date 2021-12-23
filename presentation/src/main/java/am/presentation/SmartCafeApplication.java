@@ -1,4 +1,4 @@
-package am.smartcafe.presentation;
+package am.presentation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories(basePackages = {"am.smartcafe.data_access.repository"})
 @EntityScan({"am.smartcafe.data_access.model"})
-@ComponentScan({"am.smartcafe.data_access", "am.smartcafe.service", "am.smartcafe.presentation"})
+@ComponentScan({"am.smartcafe.data_access", "am.smartcafe.service", "am.presentation"})
 @SpringBootApplication
 public class SmartCafeApplication {
 
