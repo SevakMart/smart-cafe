@@ -1,4 +1,4 @@
-package am.smartcafe.service.dto.resp;
+package am.smartcafe.service.user.dto.resp;
 
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import am.smartcafe.data_access.model.Role;
+import am.smartcafe.data_access.user.model.Role;
 
 public class UserResponse {
   private static final String REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
@@ -21,8 +21,7 @@ public class UserResponse {
   @NotEmpty(message = "*Please provide your last name")
   private String lastName;
 
-  @NotBlank
-  private Role role;
+  @NotBlank private Role role;
 
   @Email
   @Pattern(regexp = REGEX, message = "Please enter a correct email")

@@ -1,4 +1,4 @@
-package am.smartcafe.data_access.model;
+package am.smartcafe.data_access.user.model;
 
 import java.util.Objects;
 
@@ -24,6 +24,7 @@ public class User {
 
   @Enumerated(EnumType.STRING)
   private Role role;
+
   private String email;
   private String password;
 

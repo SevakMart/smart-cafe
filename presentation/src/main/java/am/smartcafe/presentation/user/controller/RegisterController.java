@@ -1,4 +1,4 @@
-package am.smartcafe.presentation.controller;
+package am.smartcafe.presentation.user.controller;
 
 import java.util.Optional;
 
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import am.smartcafe.data_access.model.User;
-import am.smartcafe.service.dto.mapper.UserMapper;
-import am.smartcafe.service.dto.req.UserRegisterRequest;
-import am.smartcafe.service.dto.resp.UserResponse;
-import am.smartcafe.service.UserService;
+import am.smartcafe.data_access.user.model.User;
+import am.smartcafe.service.user.UserService;
+import am.smartcafe.service.user.dto.mapper.UserMapper;
+import am.smartcafe.service.user.dto.req.UserRegisterRequest;
+import am.smartcafe.service.user.dto.resp.UserResponse;
 
 @Controller
 public class RegisterController {
