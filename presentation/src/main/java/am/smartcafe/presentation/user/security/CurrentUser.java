@@ -1,13 +1,14 @@
-package am.smartcafe.presentation.security;
+package am.smartcafe.presentation.user.security;
 
-import am.smartcafe.dataaccess.model.User;
+import am.smartcafe.data_access.user.model.User;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
     private User user;
+
     public CurrentUser(User user) {
-        super(user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getUserType().name()));
-        this.user=user;
+        super(user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole().name()));
+        this.user = user;
     }
 
     public User getUser() {

@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"am.smartcafe.dataaccess", "am.smartcafe.presentation", "am.smartcafe.service"})
+@ComponentScan(basePackages = {"am.smartcafe.data_access", "am.smartcafe.presentation", "am.smartcafe.service"})
 @EnableJpaRepositories(basePackages = {"am.smartcafe.dataaccess"})
 @EntityScan(basePackages = {"am.smartcafe.dataaccess"})
 

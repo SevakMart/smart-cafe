@@ -1,7 +1,6 @@
 package am.smartcafe.presentation.config;
 
-import am.smartcafe.presentation.security.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import am.smartcafe.presentation.user.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

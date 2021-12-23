@@ -1,8 +1,8 @@
-package am.smartcafe.presentation.controller;
+package am.smartcafe.presentation.user.controller;
 
-import am.smartcafe.dataaccess.model.User;
-import am.smartcafe.dataaccess.repository.UserRepository;
-import am.smartcafe.service.impl.MailServiceImpl;
+import am.smartcafe.data_access.user.model.User;
+import am.smartcafe.data_access.user.repository.UserRepository;
+import am.smartcafe.service.email.MailServiceImpl;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

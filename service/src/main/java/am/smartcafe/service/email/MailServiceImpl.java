@@ -1,6 +1,5 @@
-package am.smartcafe.service.impl;
+package am.smartcafe.service.email;
 
-import am.smartcafe.service.MailService;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -12,10 +11,8 @@ public class MailServiceImpl implements MailService {
     private final MailSender mailSender;
 
     public MailServiceImpl(MailSender mailSender) {
-
         this.mailSender = mailSender;
     }
-
 
     @Override
     public void send(String to, String subject, String message) {
@@ -26,16 +23,13 @@ public class MailServiceImpl implements MailService {
         simpleMailMessage.setText(message);
         Thread thread = new Thread(() -> mailSender.send(simpleMailMessage));
         thread.start();
-
-
     }
 
     @Override
     public String generatePassword() {
-            UUID uuid = UUID.randomUUID();
-            String password = String.valueOf(uuid);
-            return password.substring(0, 8);
-
-        }
+        UUID uuid = UUID.randomUUID();
+        String password = String.valueOf(uuid);
+        return password.substring(0, 8);
+    }
 
 }

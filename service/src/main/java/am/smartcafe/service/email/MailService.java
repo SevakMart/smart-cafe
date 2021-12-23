@@ -1,4 +1,4 @@
-package am.smartcafe.service;
+package am.smartcafe.service.email;
 
 import java.util.UUID;
 
