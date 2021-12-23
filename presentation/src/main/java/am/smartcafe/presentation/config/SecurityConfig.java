@@ -12,13 +12,15 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private UserDetailsServiceImpl securityService;
-    @Autowired
-    private  PasswordEncoder passwordEncoder;
 
+    private final UserDetailsServiceImpl securityService;
 
+    private final  PasswordEncoder passwordEncoder;
 
+    public SecurityConfig(UserDetailsServiceImpl securityService, PasswordEncoder passwordEncoder) {
+        this.securityService = securityService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
