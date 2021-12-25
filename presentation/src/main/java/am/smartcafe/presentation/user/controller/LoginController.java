@@ -1,5 +1,6 @@
 package am.smartcafe.presentation.user.controller;
 
+import am.smartcafe.data_access.user.model.EmailExpiration;
 import am.smartcafe.data_access.user.model.User;
 import am.smartcafe.data_access.user.repository.UserRepository;
 import am.smartcafe.service.email.MailServiceImpl;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
     private final MailServiceImpl mailService;
     private final UserRepository userRepository;
-
+EmailExpiration emailExpiration = new EmailExpiration();
     public LoginController(MailServiceImpl mailService, UserRepository userRepository) {
         this.mailService = mailService;
         this.userRepository = userRepository;
@@ -32,8 +33,13 @@ public class LoginController {
 
     @PostMapping("/loginPage/forgotPassword")
     public String forgotPasswordPost(@RequestParam("email") String email) throws UsernameNotFoundException {
+        String link;
+if (emailExpiration.isPasswordExpired()){
+        link = "http://localhost:8080/loginPage/forgotPassword/expirationPassword";
+        return "expirationPassword";
+        }else
+            link = "http://localhost:8080/loginPage/forgotPassword/recoverPassword";
 
-        String link = "http://localhost:8080/loginPage/forgotPassword/recoverPassword";
         String subject = "Your verification link and password";
 
         User byEmail = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("xczcxzc"));
@@ -48,4 +54,8 @@ public class LoginController {
         return "recoverPassword";
     }
 
+    @GetMapping("/loginPage/forgotPassword/expirationPassword")
+    public String expirationPassword() {
+        return "expirationPassword";
+    }
 }
