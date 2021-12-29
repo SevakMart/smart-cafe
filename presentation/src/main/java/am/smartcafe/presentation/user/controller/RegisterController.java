@@ -1,21 +1,15 @@
 package am.smartcafe.presentation.user.controller;
 
-import java.util.Optional;
-
-import javax.validation.Valid;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import am.smartcafe.data_access.user.model.User;
 import am.smartcafe.service.user.UserService;
-import am.smartcafe.service.user.dto.mapper.UserMapper;
 import am.smartcafe.service.user.dto.req.UserRegisterRequest;
-import am.smartcafe.service.user.dto.resp.UserResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class RegisterController {
@@ -27,28 +21,32 @@ public class RegisterController {
   }
 
   @GetMapping("/register")
-  public String userPage(ModelMap modelMap) {
-    modelMap.addAttribute("");
-    return "register";
+  public ModelAndView registration() {
+    ModelAndView modelAndView = new ModelAndView();
+    UserRegisterRequest user = new UserRegisterRequest();
+    modelAndView.addObject("userDto", user);
+    modelAndView.setViewName("register");
+    return modelAndView;
   }
 
   @PostMapping("/register")
-  public String createNewUser(
-      @Valid @ModelAttribute UserRegisterRequest userRegisterRequest,
-      ModelMap modelMap,
-      BindingResult bindingResult) {
-    Optional<User> userExists = userService.findByEmail(userRegisterRequest.getEmail());
+  public ModelAndView createNewUser(final UserRegisterRequest userRequest,
+                                    BindingResult bindingResult) {
+    ModelAndView modelAndView = new ModelAndView();
+    Optional<User> userExists = userService.findByEmail(userRequest.getEmail());
     if (userExists.isPresent()) {
-      bindingResult.rejectValue(
-          "email",
-          "error.user",
-          "User with this email already exists. Login or reset your password.");
+      bindingResult
+              .rejectValue("email", "error.user",
+                      "There is already a user registered with the email provided");
     }
     if (bindingResult.hasErrors()) {
-      return "redirect:/register";
+      modelAndView.setViewName("register");
+    } else {
+      userService.save(userRequest);
+      modelAndView.addObject("successMessage", "User has been registered successfully");
+      modelAndView.addObject("user", new User());
     }
-    UserResponse userResponse = userService.save(UserMapper.dtoToUser(userRegisterRequest));
-    modelMap.addAttribute("user", userResponse);
-    return "redirect:/?msg= User was added";
+    modelAndView.setViewName("register");
+    return modelAndView;
   }
 }
