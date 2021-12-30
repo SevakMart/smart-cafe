@@ -2,6 +2,7 @@ package am.smartcafe.service.user.impl;
 
 import java.util.Optional;
 
+import am.smartcafe.service.exception.ModelAlreadyExistException;
 import am.smartcafe.service.user.dto.req.UserRegisterRequest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,9 +31,18 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void save(UserRegisterRequest userRegisterRequest) {
+  public void save(UserRegisterRequest userRegisterRequest) throws ModelAlreadyExistException {
+    if (isUserExist(userRegisterRequest.getEmail())) {
+      throw new ModelAlreadyExistException(
+          String.format("User with '%s' email was already exist.",
+                  userRegisterRequest.getEmail()));
+    }
     userRegisterRequest.setPassword(encoder.encode(userRegisterRequest.getPassword()));
     UserMapper.userToDto(userRepository.save(new User()));
+  }
+
+  public boolean isUserExist(String email) {
+    return userRepository.findByEmail(email).isPresent();
   }
 
   public void changePassword(PwdChangeRequest pwdChangeRequest) {
