@@ -1,21 +1,18 @@
 package am.smartcafe.presentation.user.controller;
 
-import java.util.Locale;
-import java.util.Optional;
-
+import am.smartcafe.data_access.user.model.User;
+import am.smartcafe.service.user.UserService;
+import am.smartcafe.service.user.dto.req.PwdChangeRequest;
 import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import am.smartcafe.data_access.user.model.User;
-import am.smartcafe.service.user.UserService;
-import am.smartcafe.service.user.dto.req.PwdChangeRequest;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/user")
@@ -30,24 +27,6 @@ public class UserController {
     this.messageSource = messageSource;
     this.userService = userService;
     this.passwordEncoder = passwordEncoder;
-  }
-
-  @GetMapping("/register")
-  public String registerPage() {
-    return "register";
-  }
-
-  @PostMapping("/register")
-  public String saveUser(@ModelAttribute User user) {
-    Optional<User> userByEmail = userService.findByEmail(user.getEmail());
-    if (userByEmail.isPresent()) {
-      return "redirect:/user/register?msg=Email already used";
-    }
-    user.setActive(false);
-    userService.save(user);
-    return "redirect:/user/register?msg="
-        + messageSource.getMessage("user.register.success.message", new Object[0], Locale.ENGLISH)
-        + user.getEmail();
   }
 
   @GetMapping("/changePassword")
